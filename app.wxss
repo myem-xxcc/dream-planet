@@ -44,7 +44,7 @@ page {
 }
 
 /* ===================== 重置 ===================== */
-* {
+view, text, input, button, image, scroll-view, swiper, canvas {
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
 }
