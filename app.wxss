@@ -1,0 +1,17 @@
+/* 全局样式 */
+page {
+  background-color: #0a0a1a;
+  color: #e0d7ff;
+  font-family: -apple-system, 'PingFang SC', sans-serif;
+}
+
+/* 通用按钮 */
+.btn-primary {
+  background: linear-gradient(135deg, #7b5ea7, #4a90d9);
+  color: #fff;
+  border: none;
+  border-radius: 50rpx;
+  padding: 20rpx 60rpx;
+  font-size: 30rpx;
+  letter-spacing: 2rpx;
+}

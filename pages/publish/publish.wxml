@@ -1,0 +1,102 @@
+<!--pages/publish/publish.wxml-->
+<view class="container">
+  <view class="form-card">
+
+    <!-- 标题输入 -->
+    <view class="field">
+      <text class="label">梦境名称</text>
+      <input
+        class="input"
+        value="{{title}}"
+        placeholder="{{titlePlaceholder}}"
+        placeholder-class="placeholder"
+        maxlength="20"
+        bindinput="onInputTitle"
+      />
+      <text class="char-count">{{title.length}}/20</text>
+    </view>
+
+    <!-- 标签选择 -->
+    <view class="field">
+      <text class="label">梦境氛围 <text class="label-hint">（最多选4个）</text></text>
+      <view class="tags-wrap">
+        <view
+          wx:for="{{tags}}"
+          wx:key="*this"
+          class="tag {{selectedTags.indexOf(item) >= 0 ? 'tag-active' : ''}}"
+          data-tag="{{item}}"
+          bindtap="toggleTag"
+        >{{item}}</view>
+      </view>
+    </view>
+
+    <!-- 输入模式切换 -->
+    <view class="field">
+      <text class="label">梦境记录</text>
+      <view class="mode-switch">
+        <view
+          class="mode-btn {{mode === 'text' ? 'mode-active' : ''}}"
+          data-mode="text"
+          bindtap="switchMode"
+        >✍️ 文字</view>
+        <view
+          class="mode-btn {{mode === 'voice' ? 'mode-active' : ''}}"
+          data-mode="voice"
+          bindtap="switchMode"
+        >🎙️ 语音</view>
+      </view>
+
+      <!-- 文字输入 -->
+      <view wx:if="{{mode === 'text'}}">
+        <textarea
+          class="textarea"
+          value="{{content}}"
+          placeholder="{{contentPlaceholder}}"
+          placeholder-class="placeholder"
+          maxlength="500"
+          auto-height
+          bindinput="onInputContent"
+        />
+        <text class="char-count">{{content.length}}/500</text>
+      </view>
+
+      <!-- 语音录制 -->
+      <view wx:if="{{mode === 'voice'}}" class="voice-area">
+        <view wx:if="{{!recorded && !recording}}" class="record-idle">
+          <view class="record-btn" bindtap="startRecord">
+            <text class="record-icon">🎙️</text>
+          </view>
+          <text class="record-hint">点击开始录音（最长60秒）</text>
+        </view>
+
+        <view wx:if="{{recording}}" class="recording">
+          <view class="pulse-ring">
+            <view class="pulse-dot"></view>
+          </view>
+          <text class="record-time">{{recordDuration}}s / 60s</text>
+          <view class="stop-btn" bindtap="stopRecord">■ 停止录音</view>
+        </view>
+
+        <view wx:if="{{recorded && !recording}}" class="record-done">
+          <view class="record-preview">
+            <text class="preview-icon" bindtap="playRecord">▶</text>
+            <view class="preview-info">
+              <text class="preview-title">语音梦境</text>
+              <text class="preview-dur">时长 {{recordDuration}}s</text>
+            </view>
+            <text class="delete-icon" bindtap="deleteRecord">✕</text>
+          </view>
+          <text class="record-rerecord" bindtap="startRecord">重新录制</text>
+        </view>
+      </view>
+    </view>
+
+  </view>
+
+  <!-- 提交 -->
+  <view class="submit-wrap">
+    <view class="submit-btn {{submitting ? 'submitting' : ''}}" bindtap="onSubmit">
+      <text>{{submitting ? '记录中...' : '送入星球 ✨'}}</text>
+    </view>
+  </view>
+</view>

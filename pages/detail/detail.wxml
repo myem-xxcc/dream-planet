@@ -1,0 +1,73 @@
+<!--pages/detail/detail.wxml-->
+<view class="container" wx:if="{{dream}}">
+
+  <!-- 顶部装饰 -->
+  <view class="deco-top">
+    <view class="deco-ring ring1"></view>
+    <view class="deco-ring ring2"></view>
+  </view>
+
+  <!-- 标题区 -->
+  <view class="title-section">
+    <text class="dream-icon">🌙</text>
+    <text class="dream-title">{{dream.title}}</text>
+    <text class="dream-date">{{dream.createdAt}}</text>
+
+    <!-- 标签 -->
+    <view class="tags-row" wx:if="{{dream.tags && dream.tags.length > 0}}">
+      <text
+        wx:for="{{dream.tags}}"
+        wx:key="*this"
+        class="tag"
+      >{{item}}</text>
+    </view>
+  </view>
+
+  <!-- 分割线 -->
+  <view class="divider"></view>
+
+  <!-- 文字内容 -->
+  <view class="content-section" wx:if="{{dream.mode === 'text' || dream.content}}">
+    <text class="content-text">{{dream.content}}</text>
+  </view>
+
+  <!-- 语音播放 -->
+  <view class="voice-section" wx:if="{{dream.mode === 'voice' && dream.voicePath}}">
+    <view class="voice-player" bindtap="playVoice">
+      <view class="play-btn {{playing ? 'playing' : ''}}">
+        <text class="play-icon">{{playing ? '⏸' : '▶'}}</text>
+      </view>
+      <view class="voice-info">
+        <text class="voice-label">语音梦境</text>
+        <text class="voice-dur">{{dream.voiceDuration}}s</text>
+      </view>
+      <!-- 声波动画 -->
+      <view class="wave-bars" wx:if="{{playing}}">
+        <view class="bar b1"></view>
+        <view class="bar b2"></view>
+        <view class="bar b3"></view>
+        <view class="bar b4"></view>
+        <view class="bar b5"></view>
+      </view>
+      <view class="wave-bars wave-idle" wx:else>
+        <view class="bar b1 idle"></view>
+        <view class="bar b2 idle"></view>
+        <view class="bar b3 idle"></view>
+        <view class="bar b4 idle"></view>
+        <view class="bar b5 idle"></view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部操作 -->
+  <view class="actions">
+    <view class="action-btn btn-delete" bindtap="onDelete">
+      <text>删除梦境</text>
+    </view>
+  </view>
+
+</view>
+
+<view class="not-found" wx:else>
+  <text>梦境不存在</text>
+</view>

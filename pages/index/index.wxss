@@ -1,0 +1,111 @@
+/* pages/index/index.wxss */
+.container {
+  min-height: 100vh;
+  background: radial-gradient(ellipse at 50% 30%, #1a0f3a 0%, #0a0a1a 60%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 40rpx;
+}
+
+/* 头部 */
+.header {
+  padding: 60rpx 0 20rpx;
+  text-align: center;
+}
+.title {
+  display: block;
+  font-size: 48rpx;
+  font-weight: 700;
+  color: #e0d7ff;
+  letter-spacing: 6rpx;
+  text-shadow: 0 0 20rpx rgba(160,120,255,0.8);
+}
+.subtitle {
+  display: block;
+  font-size: 24rpx;
+  color: #9b8ec4;
+  margin-top: 10rpx;
+  letter-spacing: 3rpx;
+}
+
+/* Canvas 容器 */
+.canvas-wrap {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.planet-canvas {
+  display: block;
+}
+
+/* 空状态 */
+.empty-hint {
+  position: absolute;
+  bottom: 30rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  pointer-events: none;
+}
+.empty-icon {
+  display: block;
+  font-size: 56rpx;
+  margin-bottom: 16rpx;
+}
+.empty-text {
+  display: block;
+  font-size: 26rpx;
+  color: #9b8ec4;
+  line-height: 1.7;
+  white-space: pre-line;
+}
+
+/* 提示栏 */
+.hint-bar {
+  margin-top: -10rpx;
+  margin-bottom: 10rpx;
+}
+.hint-text {
+  font-size: 22rpx;
+  color: #6b5fa0;
+  letter-spacing: 1rpx;
+}
+
+/* 发布按钮 */
+.publish-btn {
+  margin-top: 30rpx;
+  background: linear-gradient(135deg, #7b5ea7 0%, #4a6fd4 100%);
+  border-radius: 60rpx;
+  padding: 24rpx 80rpx;
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  box-shadow: 0 8rpx 32rpx rgba(120,80,200,0.45);
+}
+.publish-btn:active {
+  opacity: 0.82;
+  transform: scale(0.97);
+}
+.publish-icon {
+  font-size: 44rpx;
+  color: #fff;
+  line-height: 1;
+  margin-top: -4rpx;
+}
+.publish-text {
+  font-size: 32rpx;
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 4rpx;
+}
+
+/* 数量 */
+.count-bar {
+  margin-top: 28rpx;
+}
+.count-text {
+  font-size: 22rpx;
+  color: #6b5fa0;
+}

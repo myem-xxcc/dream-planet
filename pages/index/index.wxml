@@ -1,0 +1,43 @@
+<!--pages/index/index.wxml-->
+<view class="container">
+  <!-- 顶部标题 -->
+  <view class="header">
+    <text class="title">梦境星球</text>
+    <text class="subtitle">触碰星球，探索梦境</text>
+  </view>
+
+  <!-- 星球 Canvas -->
+  <view class="canvas-wrap" bindtap="onCanvasLayout">
+    <canvas
+      id="planetCanvas"
+      type="2d"
+      class="planet-canvas"
+      style="width:{{canvasWidth}}px;height:{{canvasHeight * 0.72}}px"
+      bindtouchstart="onTouchStart"
+      bindtouchmove="onTouchMove"
+      bindtouchend="onTouchEnd"
+    ></canvas>
+
+    <!-- 空状态提示 -->
+    <view class="empty-hint" wx:if="{{showEmpty}}">
+      <text class="empty-icon">🌙</text>
+      <text class="empty-text">还没有梦境\n发布你的第一个梦境吧</text>
+    </view>
+  </view>
+
+  <!-- 操作提示 -->
+  <view class="hint-bar" wx:if="{{!showEmpty}}">
+    <text class="hint-text">✦ 拖动旋转星球  •  点击气泡查看梦境 ✦</text>
+  </view>
+
+  <!-- 发布按钮 -->
+  <view class="publish-btn" bindtap="onPublish">
+    <text class="publish-icon">＋</text>
+    <text class="publish-text">记录梦境</text>
+  </view>
+
+  <!-- 梦境数量 -->
+  <view class="count-bar" wx:if="{{dreams.length > 0}}">
+    <text class="count-text">已收录 {{dreams.length}} 个梦境</text>
+  </view>
+</view>
