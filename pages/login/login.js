@@ -16,32 +16,13 @@ Page({
   },
 
   /**
-   * 微信登录按钮回调（open-type="getUserInfo" 或 open-type="getPhoneNumber"）
-   * 新版 API 使用 wx.getUserProfile 或 button open-type="getUserInfo"
-   * 此处采用 button bindgetuserinfo 方式（基础库 2.10.4+ 推荐用 getUserProfile）
+   * 登录按钮点击 —— 直接调用云函数获取 openid
+   * wx.getUserProfile 在基础库 2.27.1+ 已废弃，新版微信不再支持
+   * 改为直接用 openid 作为用户唯一标识，昵称/头像引导用户在 profile 页设置
    */
-  onGetUserInfo(e) {
-    if (this.data.isLoggingIn) return;
-    if (e.detail.errMsg !== 'getUserInfo:ok') {
-      wx.showToast({ title: '授权失败，请重试', icon: 'none' });
-      return;
-    }
-    this._doLogin(e.detail.userInfo);
-  },
-
-  /** 备用：直接点击登录按钮（不依赖 getUserInfo）*/
   onLoginTap() {
     if (this.data.isLoggingIn) return;
-    // 使用 wx.getUserProfile（基础库 2.10.4+）
-    wx.getUserProfile({
-      desc: '用于展示您的头像和昵称',
-      success: (res) => {
-        this._doLogin(res.userInfo);
-      },
-      fail: () => {
-        wx.showToast({ title: '授权失败，请重试', icon: 'none' });
-      },
-    });
+    this._doLogin({ nickName: '梦境旅人', avatarUrl: '' });
   },
 
   /** 执行登录流程：调用云函数 login → 存 globalData → 跳星球 */
@@ -77,7 +58,8 @@ Page({
     } catch (e) {
       wx.hideLoading();
       console.error('登录失败', e);
-      wx.showToast({ title: '登录失败，请重试', icon: 'none' });
+      const msg = e.message || JSON.stringify(e);
+      wx.showToast({ title: msg.includes('env') ? '云环境未配置' : '登录失败，请重试', icon: 'none', duration: 3000 });
     } finally {
       this.setData({ isLoggingIn: false });
     }
