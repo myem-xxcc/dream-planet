@@ -1,0 +1,73 @@
+<!-- pages/dream-detail/dream-detail.wxml -->
+<!-- 职责：梦境详情页视图 —— 标题/内容/情绪/日期、音频播放、编辑删除菜单 -->
+
+<view class="detail-page deep-space-bg">
+
+  <!-- 自定义导航栏 -->
+  <view class="nav-bar">
+    <view class="nav-back" bindtap="onTapBack">
+      <text class="nav-back-icon">‹</text>
+    </view>
+    <text class="nav-title">梦境详情</text>
+    <view class="nav-actions">
+      <text class="nav-action-btn" bindtap="onEdit">编辑</text>
+      <text class="nav-action-btn nav-action-danger" bindtap="onDelete">删除</text>
+    </view>
+  </view>
+
+  <!-- 加载中 -->
+  <view wx:if="{{isLoading}}" class="loading-spinner">
+    <text>加载中...</text>
+  </view>
+
+  <!-- 内容区 -->
+  <scroll-view wx:elif="{{dream}}" scroll-y class="detail-scroll safe-bottom">
+
+    <!-- 头部信息 -->
+    <view class="detail-header glass-card">
+      <view class="detail-meta">
+        <text class="detail-date">{{dream.date}}</text>
+        <view class="bubble-tag">{{dream.moodLabel}}</view>
+      </view>
+      <text class="detail-title">{{dream.title}}</text>
+    </view>
+
+    <!-- 正文 -->
+    <view class="detail-body glass-card">
+      <text class="detail-content">{{dream.content}}</text>
+    </view>
+
+    <!-- 音频播放区（有录音才显示） -->
+    <view wx:if="{{dream.hasAudio && dream.audioFileID}}" class="audio-section glass-card">
+      <view class="audio-header">
+        <text class="audio-label">梦境录音</text>
+        <text class="audio-duration-total">{{dream.audioDurationLabel}}</text>
+      </view>
+
+      <!-- 进度条 -->
+      <view class="audio-progress-track">
+        <view class="audio-progress-fill" style="width:{{playProgress * 100}}%"></view>
+      </view>
+
+      <!-- 时间 & 播放按钮 -->
+      <view class="audio-controls">
+        <text class="audio-time">{{currentTime}} / {{dream.audioDurationLabel}}</text>
+        <view class="audio-play-btn" bindtap="onAudioToggle">
+          <text class="audio-play-icon">{{isPlaying ? '⏸' : '▶'}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 创建时间 -->
+    <view class="detail-footer">
+      <text class="detail-created">记录于 {{dream.createdAtLabel}}</text>
+    </view>
+
+  </scroll-view>
+
+  <!-- 未找到 -->
+  <view wx:elif="{{!isLoading}}" class="empty-state">
+    <text>梦境不见了...</text>
+  </view>
+
+</view>

@@ -1,0 +1,50 @@
+<!-- pages/planet/planet.wxml -->
+<!-- 职责：星球首页视图 —— canvas 星球 + 悬浮气泡覆盖层 -->
+
+<view class="planet-page">
+
+  <!-- 星球 canvas（全屏，手势事件绑定在此） -->
+  <canvas
+    type="2d"
+    id="planet-canvas"
+    class="planet-canvas"
+    bindtouchstart="onTouchStart"
+    bindtouchmove="onTouchMove"
+    bindtouchend="onTouchEnd"
+  ></canvas>
+
+  <!-- 气泡覆盖层（pointer-events 由气泡自身捕获） -->
+  <view class="bubbles-layer">
+    <block wx:for="{{bubbles}}" wx:key="id">
+      <view
+        wx:if="{{item.visible}}"
+        class="dream-bubble"
+        style="left:{{item.x}}px; top:{{item.y}}px; opacity:{{0.4 + item.depth * 0.6}};"
+        data-id="{{item.id}}"
+        bindtap="onBubbleTap"
+      >
+        <text class="bubble-title">{{item.title}}</text>
+      </view>
+    </block>
+  </view>
+
+  <!-- 加载中提示 -->
+  <view wx:if="{{isLoading}}" class="planet-loading">
+    <text class="loading-dot">...</text>
+    <text class="loading-text">梦境加载中</text>
+  </view>
+
+  <!-- 无梦境空状态 -->
+  <view wx:elif="{{!isLoading && dreams.length === 0}}" class="planet-empty">
+    <text class="empty-icon">✦</text>
+    <text class="empty-text">尚无梦境记录</text>
+    <text class="empty-hint">去发布页记录第一个梦吧</text>
+  </view>
+
+  <!-- 顶部标题 -->
+  <view class="planet-header">
+    <text class="planet-title">梦境星球</text>
+    <text class="planet-subtitle">{{dreams.length}} 个梦境</text>
+  </view>
+
+</view>

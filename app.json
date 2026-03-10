@@ -1,16 +1,46 @@
 {
   "pages": [
-    "pages/index/index",
-    "pages/publish/publish",
-    "pages/detail/detail"
+    "pages/planet/planet",
+    "pages/dream-detail/dream-detail",
+    "pages/dream-publish/dream-publish",
+    "pages/profile/profile",
+    "pages/login/login"
   ],
+  "tabBar": {
+    "color": "#a78bfa",
+    "selectedColor": "#e2d9f3",
+    "backgroundColor": "#1a0533",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/planet/planet",
+        "text": "星球",
+        "iconPath": "assets/icons/planet.png",
+        "selectedIconPath": "assets/icons/planet-active.png"
+      },
+      {
+        "pagePath": "pages/dream-publish/dream-publish",
+        "text": "发布",
+        "iconPath": "assets/icons/publish.png",
+        "selectedIconPath": "assets/icons/publish-active.png"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的",
+        "iconPath": "assets/icons/profile.png",
+        "selectedIconPath": "assets/icons/profile-active.png"
+      }
+    ]
+  },
   "window": {
     "backgroundTextStyle": "dark",
-    "navigationBarBackgroundColor": "#0a0a1a",
+    "navigationBarBackgroundColor": "#1a0533",
     "navigationBarTitleText": "梦境星球",
     "navigationBarTextStyle": "white",
-    "backgroundColor": "#0a0a1a"
+    "backgroundColor": "#1a0533"
   },
+  "cloud": true,
   "style": "v2",
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
 }

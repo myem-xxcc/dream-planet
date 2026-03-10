@@ -1,0 +1,56 @@
+<!-- pages/login/login.wxml -->
+<!-- 职责：登录页视图 —— 全屏深空背景、应用名/slogan、微信一键登录按钮 -->
+
+<view class="login-page">
+
+  <!-- 星点背景（静态装饰） -->
+  <view class="star-layer">
+    <view class="star star--s1"></view>
+    <view class="star star--s2"></view>
+    <view class="star star--s3"></view>
+    <view class="star star--s4"></view>
+    <view class="star star--s5"></view>
+    <view class="star star--s6"></view>
+    <view class="star star--s7"></view>
+    <view class="star star--s8"></view>
+  </view>
+
+  <!-- 中心内容 -->
+  <view class="login-content">
+
+    <!-- Logo / 星球图标 -->
+    <view class="login-logo">
+      <text class="logo-icon">✦</text>
+    </view>
+
+    <!-- 应用名 -->
+    <text class="app-name">梦境星球</text>
+    <text class="app-slogan">记录每一个不应遗忘的梦</text>
+
+    <!-- 装饰分隔 -->
+    <view class="login-divider">
+      <view class="divider-line"></view>
+      <text class="divider-text">✦</text>
+      <view class="divider-line"></view>
+    </view>
+
+    <!-- 登录按钮 -->
+    <button
+      class="login-btn"
+      bindtap="onLoginTap"
+      loading="{{isLoggingIn}}"
+      disabled="{{isLoggingIn}}"
+    >
+      <text class="login-btn-text">{{isLoggingIn ? '登录中...' : '微信一键登录'}}</text>
+    </button>
+
+    <text class="login-tip">登录即可开始记录你的星球</text>
+
+  </view>
+
+  <!-- 底部版权 -->
+  <view class="login-footer safe-bottom">
+    <text class="footer-text">Dream Planet · 2025</text>
+  </view>
+
+</view>

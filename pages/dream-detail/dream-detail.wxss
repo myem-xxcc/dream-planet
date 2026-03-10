@@ -1,0 +1,182 @@
+/* pages/dream-detail/dream-detail.wxss */
+/* 职责：梦境详情页样式 —— 导航栏、内容卡片、音频控件 */
+
+.detail-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===================== 导航栏 ===================== */
+.nav-bar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  padding: 100rpx 32rpx 24rpx;
+  background: rgba(13, 1, 32, 0.85);
+  backdrop-filter: blur(20rpx);
+  -webkit-backdrop-filter: blur(20rpx);
+}
+
+.nav-back {
+  width: 64rpx;
+  height: 64rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-back-icon {
+  font-size: 56rpx;
+  color: #a78bfa;
+  line-height: 1;
+}
+
+.nav-title {
+  flex: 1;
+  text-align: center;
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #e2d9f3;
+  letter-spacing: 2rpx;
+}
+
+.nav-actions {
+  display: flex;
+  gap: 24rpx;
+}
+
+.nav-action-btn {
+  font-size: 26rpx;
+  color: #a78bfa;
+  padding: 8rpx 0;
+}
+
+.nav-action-danger {
+  color: #f87171;
+}
+
+/* ===================== 滚动区域 ===================== */
+.detail-scroll {
+  flex: 1;
+  padding: 24rpx 32rpx;
+}
+
+/* ===================== 头部信息卡 ===================== */
+.detail-header {
+  padding: 36rpx;
+  margin-bottom: 24rpx;
+}
+
+.detail-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20rpx;
+}
+
+.detail-date {
+  font-size: 24rpx;
+  color: #9d8ec4;
+}
+
+.detail-title {
+  font-size: 40rpx;
+  font-weight: 700;
+  color: #e2d9f3;
+  line-height: 1.4;
+  letter-spacing: 1rpx;
+}
+
+/* ===================== 正文卡 ===================== */
+.detail-body {
+  padding: 36rpx;
+  margin-bottom: 24rpx;
+}
+
+.detail-content {
+  font-size: 30rpx;
+  color: #c4b8e0;
+  line-height: 1.85;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+/* ===================== 音频播放卡 ===================== */
+.audio-section {
+  padding: 32rpx;
+  margin-bottom: 24rpx;
+}
+
+.audio-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24rpx;
+}
+
+.audio-label {
+  font-size: 26rpx;
+  color: #9d8ec4;
+}
+
+.audio-duration-total {
+  font-size: 24rpx;
+  color: #7c5ccc;
+}
+
+/* 进度条 */
+.audio-progress-track {
+  height: 6rpx;
+  background: rgba(167, 139, 250, 0.2);
+  border-radius: 3rpx;
+  overflow: hidden;
+  margin-bottom: 20rpx;
+}
+
+.audio-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #7c5ccc, #a78bfa);
+  border-radius: 3rpx;
+  transition: width 0.4s linear;
+}
+
+.audio-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.audio-time {
+  font-size: 24rpx;
+  color: #9d8ec4;
+}
+
+.audio-play-btn {
+  width: 80rpx;
+  height: 80rpx;
+  background: linear-gradient(135deg, #7c5ccc, #a78bfa);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4rpx 16rpx rgba(167, 139, 250, 0.4);
+}
+
+.audio-play-icon {
+  font-size: 32rpx;
+  color: #fff;
+}
+
+/* ===================== 底部 ===================== */
+.detail-footer {
+  padding: 8rpx 0 40rpx;
+  text-align: center;
+}
+
+.detail-created {
+  font-size: 22rpx;
+  color: #5a4d7a;
+}

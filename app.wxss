@@ -1,17 +1,160 @@
-/* 全局样式 */
+/* app.wxss */
+/* 职责：全局字体、深空背景色、通用卡片/气泡样式、安全区域底部适配 */
+
+/* ===================== CSS 变量 ===================== */
 page {
-  background-color: #0a0a1a;
-  color: #e0d7ff;
-  font-family: -apple-system, 'PingFang SC', sans-serif;
+  /* 主色调 */
+  --color-bg:        #1a0533;
+  --color-bg-deep:   #0d0120;
+  --color-accent:    #a78bfa;
+  --color-accent-dim:#7c5ccc;
+  --color-text:      #e2d9f3;
+  --color-text-muted:#9d8ec4;
+  --color-border:    rgba(167, 139, 250, 0.2);
+
+  /* 气泡/卡片 */
+  --color-glass-bg:  rgba(26, 5, 51, 0.55);
+  --color-glass-border: rgba(167, 139, 250, 0.3);
+
+  /* 间距 */
+  --spacing-xs:  8rpx;
+  --spacing-sm:  16rpx;
+  --spacing-md:  24rpx;
+  --spacing-lg:  32rpx;
+  --spacing-xl:  48rpx;
+
+  /* 圆角 */
+  --radius-sm:   12rpx;
+  --radius-md:   20rpx;
+  --radius-lg:   32rpx;
+  --radius-full: 9999rpx;
+
+  /* 字体 */
+  --font-xs:   22rpx;
+  --font-sm:   26rpx;
+  --font-md:   30rpx;
+  --font-lg:   36rpx;
+  --font-xl:   44rpx;
+  --font-xxl:  56rpx;
+
+  font-family: -apple-system, "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+  font-size: var(--font-md);
+  color: var(--color-text);
+  background-color: var(--color-bg);
 }
 
-/* 通用按钮 */
-.btn-primary {
-  background: linear-gradient(135deg, #7b5ea7, #4a90d9);
-  color: #fff;
-  border: none;
-  border-radius: 50rpx;
-  padding: 20rpx 60rpx;
-  font-size: 30rpx;
-  letter-spacing: 2rpx;
+/* ===================== 重置 ===================== */
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
+
+/* ===================== 深空背景渐变 ===================== */
+.deep-space-bg {
+  background: linear-gradient(160deg, #1a0533 0%, #0d0120 50%, #06010f 100%);
+  min-height: 100vh;
+}
+
+/* ===================== 磨砂玻璃卡片 ===================== */
+.glass-card {
+  background: var(--color-glass-bg);
+  border: 1rpx solid var(--color-glass-border);
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(20rpx);
+  -webkit-backdrop-filter: blur(20rpx);
+}
+
+/* ===================== 气泡标签 ===================== */
+.bubble-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 6rpx 20rpx;
+  background: rgba(167, 139, 250, 0.15);
+  border: 1rpx solid rgba(167, 139, 250, 0.4);
+  border-radius: var(--radius-full);
+  font-size: var(--font-xs);
+  color: var(--color-accent);
+  backdrop-filter: blur(10rpx);
+  -webkit-backdrop-filter: blur(10rpx);
+}
+
+/* ===================== 主操作按钮 ===================== */
+.btn-primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 96rpx;
+  background: linear-gradient(135deg, #7c5ccc, #a78bfa);
+  border-radius: var(--radius-full);
+  color: #fff;
+  font-size: var(--font-md);
+  font-weight: 600;
+  letter-spacing: 2rpx;
+  border: none;
+  box-shadow: 0 4rpx 24rpx rgba(167, 139, 250, 0.35);
+}
+
+.btn-primary::after {
+  border: none;
+}
+
+/* ===================== 次操作按钮 ===================== */
+.btn-ghost {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 96rpx;
+  background: transparent;
+  border: 1rpx solid var(--color-accent);
+  border-radius: var(--radius-full);
+  color: var(--color-accent);
+  font-size: var(--font-md);
+}
+
+.btn-ghost::after {
+  border: none;
+}
+
+/* ===================== 分割线 ===================== */
+.divider {
+  height: 1rpx;
+  background: var(--color-border);
+  margin: var(--spacing-md) 0;
+}
+
+/* ===================== 安全区域底部 ===================== */
+.safe-bottom {
+  padding-bottom: constant(safe-area-inset-bottom);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* ===================== 加载状态 ===================== */
+.loading-spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-xl);
+  color: var(--color-text-muted);
+  font-size: var(--font-sm);
+}
+
+/* ===================== 空状态 ===================== */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-xl);
+  color: var(--color-text-muted);
+  font-size: var(--font-sm);
+}
+
+/* ===================== 文字工具类 ===================== */
+.text-accent   { color: var(--color-accent); }
+.text-muted    { color: var(--color-text-muted); }
+.text-center   { text-align: center; }
+.text-bold     { font-weight: 600; }
+.text-sm       { font-size: var(--font-sm); }
+.text-lg       { font-size: var(--font-lg); }
+.text-xl       { font-size: var(--font-xl); }

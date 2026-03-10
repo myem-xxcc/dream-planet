@@ -1,0 +1,95 @@
+<!-- pages/profile/profile.wxml -->
+<!-- 职责：个人中心页视图 —— 头像/昵称、统计数据、梦境简要列表、退出登录 -->
+
+<view class="profile-page deep-space-bg">
+
+  <!-- 顶部导航栏占位 -->
+  <view class="nav-placeholder"></view>
+
+  <scroll-view scroll-y class="profile-scroll safe-bottom">
+
+    <!-- 用户信息卡 -->
+    <view class="user-card glass-card">
+      <image
+        class="user-avatar"
+        src="{{userInfo.avatarUrl || '/assets/icons/default-avatar.png'}}"
+        mode="aspectFill"
+      />
+      <!-- 昵称正常模式 -->
+      <view wx:if="{{!isEditingNick}}" class="user-nick-row">
+        <text class="user-nick">{{userInfo.nickName || '梦境旅人'}}</text>
+        <text class="nick-edit-btn" bindtap="onEditNick">编辑</text>
+      </view>
+      <!-- 昵称编辑模式 -->
+      <view wx:else class="user-nick-edit">
+        <input
+          class="nick-input"
+          value="{{nickNameInput}}"
+          bindinput="onNickInput"
+          placeholder="请输入昵称"
+          placeholder-class="input-placeholder"
+          maxlength="20"
+          focus
+        />
+        <view class="nick-actions">
+          <text class="nick-cancel" bindtap="onCancelNick">取消</text>
+          <text class="nick-save" bindtap="onSaveNick">保存</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 统计面板 -->
+    <view class="stats-panel">
+      <view class="stat-item glass-card">
+        <text class="stat-value">{{stats.totalCount}}</text>
+        <text class="stat-label">梦境总数</text>
+      </view>
+      <view class="stat-item glass-card">
+        <text class="stat-value">{{stats.monthCount}}</text>
+        <text class="stat-label">本月记录</text>
+      </view>
+      <view class="stat-item glass-card">
+        <text class="stat-value stat-mood">{{stats.topMood}}</text>
+        <text class="stat-label">最常情绪</text>
+      </view>
+    </view>
+
+    <!-- 梦境简要列表 -->
+    <view class="section-header">
+      <text class="section-title">我的梦境</text>
+    </view>
+
+    <view wx:if="{{isLoading}}" class="loading-spinner">
+      <text>加载中...</text>
+    </view>
+
+    <view wx:elif="{{dreamList.length === 0}}" class="empty-state">
+      <text>还没有任何梦境记录</text>
+    </view>
+
+    <view wx:else class="dream-list">
+      <view
+        wx:for="{{dreamList}}"
+        wx:key="_id"
+        class="dream-list-item glass-card"
+        data-id="{{item._id}}"
+        bindtap="onDreamTap"
+      >
+        <view class="dream-list-left">
+          <text class="dream-list-title">{{item.title}}</text>
+          <text class="dream-list-date">{{item.date}}</text>
+        </view>
+        <view class="dream-list-right">
+          <view class="bubble-tag">{{item.moodLabel}}</view>
+          <text class="dream-list-arrow">›</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 退出登录 -->
+    <view class="logout-area">
+      <button class="logout-btn" bindtap="onLogout">退出登录</button>
+    </view>
+
+  </scroll-view>
+</view>
